@@ -15,6 +15,6 @@ data class MarsRealState(
     @SerializedName("type")
     val type: String,
     @SerializedName("img_src")
-    val img_src: String
+    val img_Src: String
 
 )

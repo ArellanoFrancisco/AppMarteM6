@@ -8,12 +8,12 @@ import com.example.appmartem6.Model.Remote.MarsRealState
 
 
 @Database(entities = [MarsRealState::class], version = 1)
-abstract class MarsDataBase: RoomDatabase() {
+abstract class MarsDataBase : RoomDatabase() {
 
 
     abstract fun getMarsDao(): MarsDao
 
-    // NOSE PUEDE ISNTANCIAR ES ABSTRACTO
+    // NO SE PUEDE INSTANCIAR ES ABSTRACTO
     // COMPANION OBJECT EXPONE UN OBJETO SIN INSTANCIAR LA CLASE
     companion object {
         // ESTA VARIABLE ESTE SIEMPRE DISPONIBLE
@@ -23,8 +23,6 @@ abstract class MarsDataBase: RoomDatabase() {
         // MAIN THREAD
         // BACK THREAD HILO SECUNDARIOS VOLATILE HACE QUE SE EJECUTE DONDE ESTE DISPONIBLE
         // TAREAS ASINCRONAS
-
-
         // CONTEXTO DONDE ESTAMOS EJECUTANDO LOS PROCESOS
         // MUCHAS FORMAS DE EJECUTAR EL CONTEXTO
         fun getDataBase(context: Context): MarsDataBase {
@@ -44,7 +42,7 @@ abstract class MarsDataBase: RoomDatabase() {
                     context.applicationContext,
                     // NOMBRE DEL ARCHIVO QUE CONTIENE LA BASE DE DATO
                     MarsDataBase::class.java,
-                    "MarsRealState"
+                    "mars_dataBase"
                 )
                     .build()
                 INSTANCE = instance

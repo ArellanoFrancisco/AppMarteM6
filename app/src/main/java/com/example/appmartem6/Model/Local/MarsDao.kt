@@ -24,15 +24,11 @@ interface MarsDao {
     @Delete
     suspend fun deleteMars (mars: MarsRealState)
 
-    @Query("DELETE FROM Mars_Table")
-    suspend fun deleteAll()
 
     // traer todos los  terrenos
     @Query("SELECT * FROM Mars_Table ORDER BY id DESC")
     fun getAllMars(): LiveData<List<MarsRealState>>
     // traer por tipo venta o alquiler
-    @Query("SELECT * FROM Mars_Table Where type=:type LIMIT 1")
-    fun getMarsByType(type: String): LiveData<MarsRealState>
 
     @Query("SELECT * FROM Mars_Table Where id =:id")
     fun getMarsById(id: String): LiveData<MarsRealState>

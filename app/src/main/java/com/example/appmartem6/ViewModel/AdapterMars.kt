@@ -1,5 +1,6 @@
 package com.example.appmartem6.ViewModel
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ class AdapterMars : RecyclerView.Adapter<AdapterMars.MarsViewHolder>() {
     fun selectedItem(): LiveData<MarsRealState> = selectedTerrain
 
     //funcion para actualizar
+    @SuppressLint("NotifyDataSetChanged")
     fun update(list: List<MarsRealState>){
         listMarsItem= list
         notifyDataSetChanged()
@@ -34,7 +36,7 @@ class AdapterMars : RecyclerView.Adapter<AdapterMars.MarsViewHolder>() {
 
         fun bind(mars : MarsRealState){
 
-            Glide.with(binding.imageView).load(mars.img_src).centerCrop().into(binding.imageView)
+            Glide.with(binding.imageView).load(mars.img_Src).centerCrop().into(binding.imageView)
             itemView.setOnClickListener(this)
         }
 
@@ -46,7 +48,6 @@ class AdapterMars : RecyclerView.Adapter<AdapterMars.MarsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarsViewHolder {
         return MarsViewHolder(MarsItemBinding.inflate(LayoutInflater.from(parent.context)))
-
     }
 
     override fun getItemCount(): Int = listMarsItem.size

@@ -19,19 +19,19 @@ class MarsViewModel(application: Application):AndroidViewModel(application) {
 
 //    var liveDatafromInternet: LiveData<List<MarsRealState>>
     // parte 2
-    lateinit var liveDatafromInternet: LiveData<List<MarsRealState>>
+    var liveDatafromInternet : LiveData<List<MarsRealState>>
     val allMars: LiveData<List<MarsRealState>>
 
     init {
         // llamando la instancia el dao en la base de datos
-        val MarsDao = MarsDataBase.getDataBase(application).getMarsDao()
-        repository = MarsRepository(MarsDao)
+       val marsDao = MarsDataBase.getDataBase(application).getMarsDao()
+        repository = MarsRepository(marsDao)
         //parte 1 sin Coroutines
-/*         liveDatafromInternet = repository.fetchDataMars()
-         allMars = repository.listAllMars*/
+//        liveDatafromInternet = repository.fetchDataMars()
+
         // fin parte 1
 
-        // parte 2 con Coroutines
+       // parte 2 con Coroutines
         viewModelScope.launch {
             repository.fetchDataFromInternetCoroutines()
         }
@@ -41,18 +41,17 @@ class MarsViewModel(application: Application):AndroidViewModel(application) {
         liveDatafromInternet = repository.dataFromInternet
     }
 
-    //******************************Estos métodos son con el dao****************/
-    // funcion para seleccionar
     // guardar la seleccion en una mutableLiveDATA
 
     private var selectedMarsTerrains: MutableLiveData<MarsRealState> = MutableLiveData()
 
-    fun selected(marsTerrains: MarsRealState) {
-        selectedMarsTerrains.value = marsTerrains
+    fun selected(mars: MarsRealState) {
+        selectedMarsTerrains.value = mars
     }
 
     fun selectedItem(): LiveData<MarsRealState> = selectedMarsTerrains
 
+/*
 
     fun insertMars(mars: MarsRealState) = viewModelScope.launch {
 
@@ -62,23 +61,16 @@ class MarsViewModel(application: Application):AndroidViewModel(application) {
     fun updateMars(mars: MarsRealState) = viewModelScope.launch {
         repository.updateMars(mars)
     }
-    fun deleteMars(mars: MarsRealState) = viewModelScope.launch {
-        repository.deleteMars(mars)
+    fun deleteAll(mars: MarsRealState) = viewModelScope.launch {
+        repository.deleteall(mars)
 
-    }
-    fun deleteAll() = viewModelScope.launch {
-        repository.deleteall()
-
-    }
-
-    fun getmarsByType(type:String): LiveData<MarsRealState>{
-        return  repository.getMarsByType(type)
     }
 
     fun getMarsById(id:String): LiveData<MarsRealState>{
         return  repository.getMarsById(id)
     }
 
+*/
 
 
 

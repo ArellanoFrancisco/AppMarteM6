@@ -12,7 +12,6 @@ class RetrofitClient {
 
         fun getRetrofit(): MarsApi {
             val retrofit = Retrofit.Builder()
-
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

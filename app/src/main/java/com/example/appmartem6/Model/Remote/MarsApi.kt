@@ -1,6 +1,5 @@
 package com.example.appmartem6.Model.Remote
 
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
 
@@ -9,11 +8,13 @@ import retrofit2.http.GET
 interface MarsApi {
 
 
+/*
     @GET("realestate") // vieja confuable
     fun fetchMarsData(): Call<List<MarsRealState>>
 
+*/
 
-    @GET("realstate")
+    @GET("realestate")
     suspend fun fetchMarsDataCoroutines(): Response<List<MarsRealState>>
 
 
