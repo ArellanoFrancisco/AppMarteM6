@@ -9,7 +9,7 @@ interface MarsApi {
 
 
 /*
-    @GET("realestate") // vieja confuable
+    @GET("realestate") // vieja confiable
     fun fetchMarsData(): Call<List<MarsRealState>>
 
 */
